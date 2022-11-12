@@ -1,0 +1,11 @@
+{"id":11,
+  "attrName":"出厂日期",
+  "category1Id":0,
+  "category2Id":0,
+  "category3Id":0,
+  "attrValueList":
+  [{"id":59,"valueName":"2020.5.21",
+    "attrId":11,
+    "edit":false}],
+  "categoryId":2,
+  "categoryLevel":1}

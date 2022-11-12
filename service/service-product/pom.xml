@@ -16,4 +16,19 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+
+    <dependencies>
+<!--       minio-->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>7.0.2</version>
+        </dependency>
+<!--        测试工具-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

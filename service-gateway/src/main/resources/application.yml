@@ -22,5 +22,10 @@ spring:
           '[/**]':
             allowedOrigins: "*"  # 所有的地址能访问
             allowedMethods: "*"   # 所有的请求方式都能
+            allowedHeaders: "*"
+            allowCredentials: true
+#            allowedHeaders: "*"  # 所有的请求头都访问
+#            allowCredentials: "*"
+
 
 

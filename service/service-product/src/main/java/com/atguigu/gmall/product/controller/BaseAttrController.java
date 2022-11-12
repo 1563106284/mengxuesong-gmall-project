@@ -1,15 +1,16 @@
 package com.atguigu.gmall.product.controller;
 
+
+
 import com.atguigu.gmall.common.result.Result;
-import com.atguigu.gmall.model.product.BaseAttrInfo;
+import com.atguigu.gmall.product.domain.BaseAttrInfo;
+import com.atguigu.gmall.product.domain.BaseAttrValue;
 import com.atguigu.gmall.product.service.BaseAttrInfoService;
-
+import com.atguigu.gmall.product.service.BaseAttrValueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -18,21 +19,42 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/product")
 public class BaseAttrController {
-
-
     @Autowired
     BaseAttrInfoService baseAttrInfoService;
+    @Autowired
+    BaseAttrValueService baseAttrValueService;
 
     /**
-     * 1： 根据产品分类的属性 查询出对应的平台属性
-     * /admin/product/attrInfoList/6/6/0
+     *   3: 修改前的数据回显
+     *   /admin/product/getAttrValueList/1
+     */
+    @GetMapping("/getAttrValueList/{attrId}")
+    public Result getAttrValueList(@PathVariable("attrId")String attrId){
+        List<BaseAttrValue> attrValueList = baseAttrValueService.getAttrValueList(attrId);
+        return Result.ok(attrValueList);
+    }
+
+    /**
+     *  2: 保存添加的平台属性
+     *  saveAttrInfo
+     *  //192.168.200.1/admin/product/saveAttrInfo
+     */
+    @PostMapping("/saveAttrInfo")
+    public Result saveAttrInfo(@RequestBody BaseAttrInfo baseAttrInfo){
+        baseAttrInfoService.saveAttrInfo(baseAttrInfo);
+        return Result.ok();
+    }
+
+    /**
+     *   1: 根据分类属性 查询平台的 属性
+     *  /admin/product/attrInfoList/5/30/0
      */
     @GetMapping("/attrInfoList/{c1Id}/{c2Id}/{c3Id}")
-    public Result getBaseAttr(@PathVariable("c1Id")Long c1Id,
-                              @PathVariable("c2Id")Long c2Id,
-                            @PathVariable("c3Id")Long c3Id){
+    public Result byCategoryGetBaseAttrInfo(@PathVariable("c1Id")String c1Id,
+                                            @PathVariable("c2Id")String c2Id,
+                                            @PathVariable("c3Id")String c3Id){
 
-       List<BaseAttrInfo> attrInfos=baseAttrInfoService.byCategorySelectBaseAttr(c1Id,c2Id,c3Id);
-        return Result.ok(attrInfos);
+        List<BaseAttrInfo> list=baseAttrInfoService.byCategoryGetBaseAttrInfo(c1Id,c2Id,c3Id);
+        return Result.ok(list);
     }
 }
