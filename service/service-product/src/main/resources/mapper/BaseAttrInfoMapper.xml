@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.gmall.product.mapper.BaseAttrInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.atguigu.gmall.product.domain.BaseAttrInfo" autoMapping="true">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+<!--            <result property="attrName" column="attr_name" jdbcType="VARCHAR"/>-->
+<!--            <result property="categoryId" column="category_id" jdbcType="BIGINT"/>-->
+<!--            <result property="categoryLevel" column="category_level" jdbcType="INTEGER"/>-->
+            <collection property="attrValueList" ofType="com.atguigu.gmall.product.domain.BaseAttrValue" autoMapping="true">
+            <id property="id" column="valueId" />
+            </collection>
+    </resultMap>
+
+
+
+    <select id="byCategoryGetBaseAttrInfo" resultMap="BaseResultMap">
+    SELECT a.*,b.id AS valueId,b.value_name AS valueName FROM `base_attr_info`a LEFT JOIN base_attr_value b ON a.`id`=b.`attr_id`
+   <where>
+       <if test="c1Id !=0">
+            (category_id=#{c1Id} AND category_level=1)
+       </if>
+          <if test="c2Id !=0">
+         or (category_id=#{c2Id} AND category_level=2)
+       </if>
+          <if test="c3Id !=0">
+        or (category_id=#{c3Id} AND category_level=3)
+       </if>
+     </where>
+   </select>
+
+</mapper>

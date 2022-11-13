@@ -1,0 +1,57 @@
+{
+  id: null,
+  spuName: "Apple iPhone 14"
+
+}
+category3Id
+61
+description: "品牌： Apple\n商品名称：AppleiPhone 14商品编号：100038005189商品毛重：350.00g商品产地：中国大陆CPU型号：A15运行内存：未公布机身颜色：紫色三防标准：IP68屏幕分辨率：FHD+充电功率：以官网信息为准机身内存：128GB风格：苹果风，商务，科技屏幕材质：OLED直屏后摄主像素：1200万像素机身色系：紫色系"
+id: null
+spuImageList:
+[{imgName: "3.png", …}, {imgName: "1.png", …}, {imgName: "2.png", …}, {imgName: "5.png", …}, …]
+0: {imgName: "3.png", …}
+imgName
+: "3.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/8fc53f4c-b83c-4683-865a-c631a892e0f8_3.png"
+1: {imgName: "1.png", …}
+imgName: "1.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/adf585b4-f607-496c-b977-b9c769d0db29_1.png"
+2: {imgName: "2.png", …}
+imgName
+: "2.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/01db18c3-4ea9-4a33-a6e1-7fb87a618d5b_2.png"
+3: {imgName: "5.png", …}
+imgName: "5.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/3b87a052-2f0e-49a8-bfe0-1e8c70bee211_5.png"
+4: {imgName: "4.png", …}
+imgName
+: "4.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/5e588fd6-7f52-43b2-a17a-495b6cc6427e_4.png"
+5: {imgName: "2.png", …}
+imgName: "2.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/4e74fe40-f8b7-4139-b26c-b512e67e4bb0_2.png"
+6: {imgName: "3.png", …}
+imgName
+: "3.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/35cce7bf-0354-4827-9ba3-8ae97f980975_3.png"
+7: {imgName: "4.png", …}
+imgName: "4.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/7041f3d6-9007-478f-bc1d-aa161e73d9be_4.png"
+8: {imgName: "5.png", …}
+imgName
+: "5.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/d4a09282-55e8-4cb3-8b5b-7bcf0c14c2c8_5.png"
+9: {imgName: "1.png", …}
+imgName: "1.png"
+imgUrl: "http://192.168.200.100:9000/java-gmall/2022-11-13/277767a7-3993-4e29-90c9-636f63be983b_1.png"
+spuName: "Apple iPhone 14"
+spuSaleAttrList:
+[{baseSaleAttrId: "1", saleAttrName: "选择颜色", …}]
+0: {baseSaleAttrId: "1", saleAttrName: "选择颜色", …
+}
+baseSaleAttrId: "1"
+saleAttrName: "选择颜色"
+spuSaleAttrValueList
+:
+[{baseSaleAttrId: "1", saleAttrValueName: "仙女渐变色"}, {baseSaleAttrId: "1", saleAttrValueName: "深蓝星球"}]
+tmId: 12

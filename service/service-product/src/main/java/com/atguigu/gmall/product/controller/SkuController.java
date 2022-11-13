@@ -1,0 +1,66 @@
+package com.atguigu.gmall.product.controller;
+
+import com.atguigu.gmall.common.result.Result;
+import com.atguigu.gmall.product.domain.SkuInfo;
+import com.atguigu.gmall.product.service.SkuInfoService;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * 功能描述：
+ * sku后台管理接口
+ *
+ * @Author: mengzhengjin
+ * @Date: 2022/11/13 23:
+ */
+@Api(tags = "sku后台接口")
+@RestController
+@RequestMapping("/admin/product")
+public class SkuController {
+    @Autowired
+    SkuInfoService skuInfoService;
+    /**
+     * 3:sku的上架接口：
+     * http://192.168.200.1/admin/product/onSale/45
+     */
+    @GetMapping("/onSale/{saleId}")
+    public Result onSale(@PathVariable("saleId") Long saleId) {
+        UpdateWrapper<SkuInfo> updateWrapper = new UpdateWrapper();
+        updateWrapper.eq("id", saleId).set("is_sale", 1);
+        skuInfoService.update(updateWrapper);
+        return Result.ok();
+    }
+
+    /**
+     * 2:sku的下架接口：
+     * http://192.168.200.1/admin/product/cancelSale/46
+     */
+    @GetMapping("/cancelSale/{saleId}")
+    public Result cancelSale(@PathVariable("saleId") Long saleId) {
+        UpdateWrapper<SkuInfo> updateWrapper = new UpdateWrapper();
+        updateWrapper.eq("id", saleId).set("is_sale", 0);
+        skuInfoService.update(updateWrapper);
+        return Result.ok();
+    }
+
+    /**
+     * 1；sku分页接口
+     *
+     * @return http://192.168.200.1/admin/product/list/1/10
+     */
+    @GetMapping("/list/{pageNum}/{pageSize}")
+    public Result skuPage(@PathVariable("pageNum") Long pageNum,
+                          @PathVariable("pageSize") Long pageSize) {
+        Page<SkuInfo> page = new Page();
+        Page<SkuInfo> skuInfoPage = skuInfoService.page(page);
+        return Result.ok(skuInfoPage);
+    }
+}
+

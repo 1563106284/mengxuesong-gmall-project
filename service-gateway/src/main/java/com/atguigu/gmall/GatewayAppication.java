@@ -16,6 +16,7 @@ import org.springframework.cloud.client.SpringCloudApplication;
  * 2：跨域的定义：
  *  浏览器发现 页面所在的地址和 它即将请求的地址不一致
  */
+
 @SpringCloudApplication
 public class GatewayAppication {
     public static void main(String[] args) {

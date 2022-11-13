@@ -3,36 +3,51 @@ package com.atguigu.gmall.product.controller;
 import com.atguigu.gmall.common.result.Result;
 import com.atguigu.gmall.product.domain.BaseTrademark;
 import com.atguigu.gmall.product.service.BaseTrademarkService;
+import com.atguigu.gmall.product.service.FileUplocadService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.checkerframework.checker.units.qual.min;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * 品牌分页：展示
  * http://192.168.200.1/admin/product/baseTrademark/1/10
  */
+@Api(tags = "品牌属性接口")
 @RestController
 @RequestMapping("/admin/product")
 public class baseTrademarkController {
     @Autowired
     BaseTrademarkService baseTrademarkService;
+    @Autowired
+    FileUplocadService fileUplocadService;
 
-
+    /**
+     * http://192.168.200.1/admin/product/baseTrademark/getTrademarkList
+     * 7:商品属性管理模块：添加spu属性：品牌数据的回显
+     */
+    @GetMapping("/baseTrademark/getTrademarkList")
+    public Result getTrademark(){
+        List<BaseTrademark> trademarkInfo = baseTrademarkService.list();
+        return Result.ok(trademarkInfo);
+    }
 
 
     /**
-     *  6:图片上传
-     *  http://192.168.200.1/admin/product/fileUpload
+     * 6:图片上传
+     * http://192.168.200.1/admin/product/fileUpload
      */
+    @ApiOperation(value = "文件上传")
     @PostMapping("/fileUpload")
     public Result fileUpload(@RequestPart("file") MultipartFile file) throws Exception {
 
-        System.out.println(file);
-         baseTrademarkService.uploadFile(file);
-
-        return Result.ok();
+        // 1:调用service 上传图片
+        String url = fileUplocadService.uploadFile(file);
+        return Result.ok(url);
     }
 
     /**
