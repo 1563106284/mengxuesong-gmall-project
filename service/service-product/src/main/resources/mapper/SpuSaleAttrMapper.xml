@@ -3,16 +3,27 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.gmall.product.mapper.SpuSaleAttrMapper">
-
-    <resultMap id="BaseResultMap" type="com.atguigu.gmall.product.domain.SpuSaleAttr">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="spuId" column="spu_id" jdbcType="BIGINT"/>
-            <result property="baseSaleAttrId" column="base_sale_attr_id" jdbcType="BIGINT"/>
-            <result property="saleAttrName" column="sale_attr_name" jdbcType="VARCHAR"/>
+    <resultMap id="BaseResultMap" type="com.atguigu.gmall.product.domain.SpuSaleAttr" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <collection property="spuSaleAttrValueList" ofType="com.atguigu.gmall.product.domain.SpuSaleAttrValue"
+                    autoMapping="true">
+<!--                    在集合中封装数据 ：多表mybatis：封装不进去数据，所以需要自定义 2：字段的重复让mybatis无法识别-->
+            <id column="bid" property="id"/>
+        </collection>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,spu_id,base_sale_attr_id,
+        id,
+        spu_id,
+        base_sale_attr_id,
         sale_attr_name
     </sql>
+
+    <select id="spuSaleAttrList" resultMap="BaseResultMap">
+        select a.*, b.id bid, b.spu_id bspuId, b.base_sale_attr_id bsaleattr, b.sale_attr_value_name bvalename
+        from spu_sale_attr a
+                     LEFT JOIN spu_sale_attr_value b ON a.spu_id = b.spu_id
+                AND a.base_sale_attr_id = b.base_sale_attr_id
+        WHERE a.spu_id = #{spuId}
+    </select>
 </mapper>

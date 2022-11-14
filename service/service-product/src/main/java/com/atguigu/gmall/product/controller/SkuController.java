@@ -1,9 +1,15 @@
 package com.atguigu.gmall.product.controller;
 
 import com.atguigu.gmall.common.result.Result;
+
 import com.atguigu.gmall.product.domain.SkuInfo;
+import com.atguigu.gmall.product.domain.SpuImage;
+import com.atguigu.gmall.product.domain.SpuSaleAttr;
 import com.atguigu.gmall.product.service.SkuInfoService;
+import com.atguigu.gmall.product.service.SpuImageService;
+import com.atguigu.gmall.product.service.SpuSaleAttrService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -12,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * 功能描述：
@@ -26,6 +34,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class SkuController {
     @Autowired
     SkuInfoService skuInfoService;
+    @Autowired
+    SpuImageService spuImageService;
+    @Autowired
+    SpuSaleAttrService spuSaleAttrService;
+    /**
+     *  5：根据spuid 查询出销售属性名 和值
+     *  http://192.168.200.1/admin/product/spuSaleAttrList/24
+     */
+    @GetMapping("/spuSaleAttrList/{spuId}")
+    public Result spuSaleAttrList(@PathVariable("spuId")Long spuId){
+        List<SpuSaleAttr> list=spuSaleAttrService.spuSaleAttrList(spuId);
+
+        return Result.ok(list);
+    }
+    /**
+     *  http://192.168.200.1/admin/product/spuImageList/24
+     *  4: 添加sku功能中:获取spu图片接口
+     */
+    @GetMapping("/spuImageList/{spuId}")
+    public Result byIdGetSpuImageList(@PathVariable("spuId")Long spuId){
+        QueryWrapper<SpuImage> queryWrapper=new QueryWrapper();
+        queryWrapper.eq("spu_id",spuId);
+        List<SpuImage> imageList = spuImageService.list(queryWrapper);
+        return Result.ok(imageList);
+    }
     /**
      * 3:sku的上架接口：
      * http://192.168.200.1/admin/product/onSale/45
