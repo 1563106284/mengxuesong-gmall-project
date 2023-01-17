@@ -16,6 +16,10 @@ spring:
           uri: lb://service-product
           predicates:
             - Path=/admin/product/**
+        - id: web_all_route
+          uri: lb://web-all
+          predicates:
+            - Host=**.gmall.com
 # 配置gateway：处理cors policy ：也就是跨域问题
       globalcors:
         cors-configurations:

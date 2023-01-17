@@ -1,11 +1,13 @@
 package com.atguigu.gmall.product.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
+
+
+import com.atguigu.gmall.model.product.BaseCategory3;
+import com.atguigu.gmall.product.mapper.BaseCategory3Mapper;
+import com.atguigu.gmall.product.service.BaseCategory3Service;
+import com.atguigu.gmall.product.to.CategoryView;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.gmall.product.domain.BaseCategory3;
-import com.atguigu.gmall.product.service.BaseCategory3Service;
-import com.atguigu.gmall.product.mapper.BaseCategory3Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +20,21 @@ import java.util.List;
 */
 @Service
 public class BaseCategory3ServiceImpl extends ServiceImpl<BaseCategory3Mapper, BaseCategory3>
-    implements BaseCategory3Service{
+    implements BaseCategory3Service {
     @Autowired
     BaseCategory3Mapper baseCategory3Mapper;
+
+    /**
+     *  2：根据3级分类id获取信息
+     * @param category3Id
+     * @return
+     */
+    @Override
+    public CategoryView getCategoryInfo(Long category3Id) {
+        CategoryView categoryView=baseCategory3Mapper.getCategoryInfo(category3Id);
+        return categoryView;
+    }
+
     /**
      *  根据2级分类查询3级分类
      * @param c2Id

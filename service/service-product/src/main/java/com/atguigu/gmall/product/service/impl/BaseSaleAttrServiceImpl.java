@@ -1,9 +1,9 @@
 package com.atguigu.gmall.product.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.gmall.product.domain.BaseSaleAttr;
-import com.atguigu.gmall.product.service.BaseSaleAttrService;
+import com.atguigu.gmall.model.product.BaseSaleAttr;
 import com.atguigu.gmall.product.mapper.BaseSaleAttrMapper;
+import com.atguigu.gmall.product.service.BaseSaleAttrService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class BaseSaleAttrServiceImpl extends ServiceImpl<BaseSaleAttrMapper, BaseSaleAttr>
-    implements BaseSaleAttrService{
+    implements BaseSaleAttrService {
 
 }
 

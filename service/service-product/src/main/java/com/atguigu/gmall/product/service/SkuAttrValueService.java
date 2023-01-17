@@ -1,6 +1,7 @@
 package com.atguigu.gmall.product.service;
 
-import com.atguigu.gmall.product.domain.SkuAttrValue;
+
+import com.atguigu.gmall.model.product.SkuAttrValue;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

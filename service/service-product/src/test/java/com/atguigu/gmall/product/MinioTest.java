@@ -3,7 +3,7 @@ package com.atguigu.gmall.product;
 import io.minio.MinioClient;
 import io.minio.PutObjectOptions;
 import io.minio.errors.MinioException;
-import org.springframework.boot.test.context.SpringBootTest;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
  * @Author: mengzhengjin
  * @Date: 2022/11/13 11:51
  */
-@SpringBootTest
 public class MinioTest {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InvalidKeyException {

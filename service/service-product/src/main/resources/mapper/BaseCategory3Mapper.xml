@@ -3,14 +3,38 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.gmall.product.mapper.BaseCategory3Mapper">
-
-    <resultMap id="BaseResultMap" type="com.atguigu.gmall.product.domain.BaseCategory3">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="category2Id" column="category2_id" jdbcType="BIGINT"/>
+    <resultMap id="BaseResultMap" type="com.atguigu.gmall.model.product.BaseCategory3">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="category2Id" column="category2_id" jdbcType="BIGINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,category2_id
+        id,
+        name,
+        category2_id
     </sql>
+    <resultMap id="getCategoryInfo" type="com.atguigu.gmall.product.to.CategoryView">
+    <id column="b3id" property="category3Id"></id>
+    <result column="b3name"  property="category3Name"></result>
+    <result column="b2id"  property="category2Id"></result>
+    <result column="b2name"  property="category2Name"></result>
+    <result column="b1id"  property="category1Id"></result>
+    <result column="b1name"  property="category1Name"></result>
+
+</resultMap>
+
+    <select id="getCategoryInfo" resultType="com.atguigu.gmall.product.to.CategoryView">
+        SELECT b3.id   category3Id,
+               b3.name category3Name,
+               b2.id   category2Id,
+               b2.name category2Name,
+               b1.id   category1Id,
+               b1.name category1Name
+
+        FROM base_category3 b3
+                     LEFT JOIN base_category2 b2 ON b3.category2_id = b2.id
+                     LEFT JOIN base_category1 b1 ON b2.category1_id = b1.id
+        WHERE b3.id = #{category3Id}
+    </select>
 </mapper>

@@ -14,13 +14,13 @@
     <modules>
         <module>service-product</module>
         <module>web-all</module>
+        <module>service-item</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-<!--    业务模块： 业务微服务-->
     <dependencies>
         <!--依赖服务的工具类-->
         <dependency>
@@ -52,6 +52,9 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+
+
+        <!--        以下是每个微服务都需要的公共治理设施  -->
 
         <!-- 服务注册 -->
         <dependency>
@@ -89,7 +92,18 @@
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
 
-    </dependencies>
+        <dependency>
+            <groupId>com.atguigu.gmall</groupId>
+            <artifactId>feign-client</artifactId>
+            <version>1.0</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.atguigu</groupId>
+            <artifactId>service-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

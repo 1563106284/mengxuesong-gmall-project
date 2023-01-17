@@ -22,6 +22,8 @@ import org.springframework.context.annotation.Configuration;
 public class MinioConfiguration {
     @Autowired
     MinioProperties minioProperties;
+
+
     @Bean
     public MinioClient minioClient() throws Exception {
         // 1：创建minio的客户端

@@ -1,10 +1,9 @@
 package com.atguigu.gmall.product.controller;
 
 import com.atguigu.gmall.common.result.Result;
-import com.atguigu.gmall.product.domain.SpuInfo;
-import com.atguigu.gmall.product.service.SpuImageService;
+
+import com.atguigu.gmall.model.product.SpuInfo;
 import com.atguigu.gmall.product.service.SpuInfoService;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;

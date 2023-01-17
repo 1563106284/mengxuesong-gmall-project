@@ -1,9 +1,10 @@
 package com.atguigu.gmall.product.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.gmall.product.domain.SkuAttrValue;
+
+import com.atguigu.gmall.model.product.SkuAttrValue;
 import com.atguigu.gmall.product.service.SkuAttrValueService;
 import com.atguigu.gmall.product.mapper.SkuAttrValueMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

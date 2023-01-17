@@ -5,7 +5,7 @@ import com.atguigu.gmall.product.config.minio.MinioProperties;
 import com.atguigu.gmall.product.service.FileUplocadService;
 import io.minio.MinioClient;
 import io.minio.PutObjectOptions;
-import lombok.SneakyThrows;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

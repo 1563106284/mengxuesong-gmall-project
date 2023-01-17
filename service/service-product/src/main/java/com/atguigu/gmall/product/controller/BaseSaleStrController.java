@@ -1,7 +1,8 @@
 package com.atguigu.gmall.product.controller;
 
 import com.atguigu.gmall.common.result.Result;
-import com.atguigu.gmall.product.domain.BaseSaleAttr;
+
+import com.atguigu.gmall.model.product.BaseSaleAttr;
 import com.atguigu.gmall.product.service.BaseSaleAttrService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

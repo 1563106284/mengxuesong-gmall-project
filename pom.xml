@@ -37,8 +37,8 @@
         <version>2.3.6.RELEASE</version>
     </parent>
 
-<!--  dependency manage：管理jar 不直接引入-->
-    <!--配置dependencyManagement锁定依赖的版本 并不是实际的依赖。-->
+    <!--配置 dependencyManagement 锁定依赖的版本 并不是实际的依赖  。-->
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -90,6 +90,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+
+    <!--    <build>-->
+    <!--        <plugins>-->
+    <!--            <plugin>-->
+    <!--                <groupId>org.springframework.boot</groupId>-->
+    <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+    <!--            </plugin>-->
+    <!--        </plugins>-->
+    <!--    </build>-->
 
 
 

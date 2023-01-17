@@ -3,14 +3,15 @@ package com.atguigu.gmall.product.controller;
 
 
 import com.atguigu.gmall.common.result.Result;
-import com.atguigu.gmall.product.domain.BaseAttrInfo;
-import com.atguigu.gmall.product.domain.BaseAttrValue;
+
+import com.atguigu.gmall.model.product.BaseAttrInfo;
+import com.atguigu.gmall.model.product.BaseAttrValue;
 import com.atguigu.gmall.product.service.BaseAttrInfoService;
 import com.atguigu.gmall.product.service.BaseAttrValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
+
 import java.util.List;
 
 /**

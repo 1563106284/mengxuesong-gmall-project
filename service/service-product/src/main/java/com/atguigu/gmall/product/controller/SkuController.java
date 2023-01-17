@@ -1,11 +1,15 @@
 package com.atguigu.gmall.product.controller;
 
+import com.atguigu.gmall.common.constant.SystemRedisConstant;
 import com.atguigu.gmall.common.result.Result;
 
-import com.atguigu.gmall.common.result.ResultCodeEnum;
-import com.atguigu.gmall.product.domain.SkuInfo;
-import com.atguigu.gmall.product.domain.SpuImage;
-import com.atguigu.gmall.product.domain.SpuSaleAttr;
+
+
+import com.atguigu.gmall.model.product.SkuImage;
+import com.atguigu.gmall.model.product.SkuInfo;
+import com.atguigu.gmall.model.product.SpuImage;
+import com.atguigu.gmall.model.product.SpuSaleAttr;
+import com.atguigu.gmall.product.service.BaseCategory3Service;
 import com.atguigu.gmall.product.service.SkuInfoService;
 import com.atguigu.gmall.product.service.SpuImageService;
 
@@ -15,6 +19,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
+import org.redisson.api.RBloomFilter;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,15 +43,30 @@ public class SkuController {
     SpuImageService spuImageService;
     @Autowired
     SpuSaleAttrService spuSaleAttrService;
-
+    /**
+     *  7:测试布隆过滤器 判断 是否有
+     */
+    @Autowired
+    RedissonClient redissonClient;
+    @GetMapping("/bloomFilter/{skuId}")
+    public Result bloomTest(
+            @PathVariable("skuId")Long skuId
+    ){
+        RBloomFilter<Object> bloomFilter = redissonClient.getBloomFilter(SystemRedisConstant.BLOOM_SKUID);
+        boolean contains = bloomFilter.contains(skuId);
+        return Result.ok("布隆判断本商品"+contains);
+    }
     /**
      *  6： sku json 数据的保存
      *  http://192.168.200.1/admin/product/saveSkuInfo
      */
     @PostMapping("/saveSkuInfo")
     public Result saveSkuInfo(@RequestBody SkuInfo skuInfo){
-        List<SkuInfo> skuInfoList=skuInfoService.saveSkuInfo(skuInfo);
-        return Result.ok(skuInfoList);
+        for (SkuImage skuImage : skuInfo.getSkuImageList()) {
+            System.out.println("===========值====="+skuImage.getImgUrl());
+        }
+        skuInfoService.saveSkuInfo(skuInfo);
+        return Result.ok(Result.ok());
     }
 
     /**

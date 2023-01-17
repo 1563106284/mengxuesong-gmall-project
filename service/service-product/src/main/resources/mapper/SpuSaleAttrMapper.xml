@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.gmall.product.mapper.SpuSaleAttrMapper">
-    <resultMap id="BaseResultMap" type="com.atguigu.gmall.product.domain.SpuSaleAttr" autoMapping="true">
+    <resultMap id="BaseResultMap" type="com.atguigu.gmall.model.product.SpuSaleAttr" autoMapping="true">
         <id property="id" column="id" jdbcType="BIGINT"/>
-        <collection property="spuSaleAttrValueList" ofType="com.atguigu.gmall.product.domain.SpuSaleAttrValue"
+        <collection property="spuSaleAttrValueList" ofType="com.atguigu.gmall.model.product.SpuSaleAttrValue"
                     autoMapping="true">
-<!--                    在集合中封装数据 ：多表mybatis：封装不进去数据，所以需要自定义 2：字段的重复让mybatis无法识别-->
+            <!--                    在集合中封装数据 ：多表mybatis：封装不进去数据，所以需要自定义 2：字段的重复让mybatis无法识别-->
             <id column="bid" property="id"/>
         </collection>
     </resultMap>
@@ -25,5 +25,27 @@
                      LEFT JOIN spu_sale_attr_value b ON a.spu_id = b.spu_id
                 AND a.base_sale_attr_id = b.base_sale_attr_id
         WHERE a.spu_id = #{spuId}
+    </select>
+
+    <resultMap id="spuData" type="com.atguigu.gmall.model.product.SpuSaleAttr" autoMapping="true">
+    <id property="id" column="id"></id>
+    <collection property="spuSaleAttrValueList" ofType="com.atguigu.gmall.model.product.SpuSaleAttrValue" autoMapping="true">
+    <id column="bid" property="id"></id>
+    <result column="bvalename" property="saleAttrValueName"></result>
+    <result property="isChecked" column="is_check"></result>
+    </collection>
+    </resultMap>
+    <select id="getSpuDate" resultMap="spuData">
+        select a.*,
+               b.id                                   bid,
+               b.sale_attr_value_name                 bvalename,
+               IF(c.sale_attr_value_id is null, 0, 1) is_check
+        from spu_sale_attr a
+                     LEFT JOIN spu_sale_attr_value b ON a.spu_id = b.spu_id
+                AND a.base_sale_attr_id = b.base_sale_attr_id
+                     LEFT JOIN sku_sale_attr_value c
+                ON b.id = c.sale_attr_value_id AND c.sku_id = #{skuId}
+        WHERE a.spu_id = #{spuId}
+        order by a.base_sale_attr_id, b.id
     </select>
 </mapper>

@@ -1,7 +1,8 @@
 package com.atguigu.gmall.product.controller;
 
 import com.atguigu.gmall.common.result.Result;
-import com.atguigu.gmall.product.domain.BaseTrademark;
+
+import com.atguigu.gmall.model.product.BaseTrademark;
 import com.atguigu.gmall.product.service.BaseTrademarkService;
 import com.atguigu.gmall.product.service.FileUplocadService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

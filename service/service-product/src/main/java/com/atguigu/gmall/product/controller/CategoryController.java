@@ -1,9 +1,10 @@
 package com.atguigu.gmall.product.controller;
 
 import com.atguigu.gmall.common.result.Result;
-import com.atguigu.gmall.product.domain.BaseCategory1;
-import com.atguigu.gmall.product.domain.BaseCategory2;
-import com.atguigu.gmall.product.domain.BaseCategory3;
+
+import com.atguigu.gmall.model.product.BaseCategory1;
+import com.atguigu.gmall.model.product.BaseCategory2;
+import com.atguigu.gmall.model.product.BaseCategory3;
 import com.atguigu.gmall.product.service.BaseCategory1Service;
 import com.atguigu.gmall.product.service.BaseCategory2Service;
 import com.atguigu.gmall.product.service.BaseCategory3Service;

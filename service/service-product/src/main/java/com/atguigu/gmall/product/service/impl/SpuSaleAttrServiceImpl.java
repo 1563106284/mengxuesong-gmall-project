@@ -1,11 +1,12 @@
 package com.atguigu.gmall.product.service.impl;
 
 
-import com.atguigu.gmall.product.domain.SpuSaleAttr;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+
+import com.atguigu.gmall.model.product.SpuSaleAttr;
 import com.atguigu.gmall.product.service.SpuSaleAttrService;
 import com.atguigu.gmall.product.mapper.SpuSaleAttrMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,12 @@ public class SpuSaleAttrServiceImpl extends ServiceImpl<SpuSaleAttrMapper, SpuSa
 
     @Autowired
     SpuSaleAttrMapper spuSaleAttrMapper;
+
+    @Override
+    public List<SpuSaleAttr> getSpuDate(Long skuId, Long spuId) {
+        List<SpuSaleAttr> spuDate = spuSaleAttrMapper.getSpuDate(spuId, skuId);
+        return spuDate;
+    }
 
     /**
      * 1:根据spuId 查询出销售属性的名 和值

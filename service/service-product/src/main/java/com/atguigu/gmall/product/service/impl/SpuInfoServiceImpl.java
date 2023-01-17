@@ -1,16 +1,17 @@
 package com.atguigu.gmall.product.service.impl;
 
-import com.atguigu.gmall.product.domain.SpuImage;
-import com.atguigu.gmall.product.domain.SpuSaleAttr;
-import com.atguigu.gmall.product.domain.SpuSaleAttrValue;
-import com.atguigu.gmall.product.mapper.SpuImageMapper;
+
+import com.atguigu.gmall.model.product.SpuImage;
+import com.atguigu.gmall.model.product.SpuInfo;
+import com.atguigu.gmall.model.product.SpuSaleAttr;
+import com.atguigu.gmall.model.product.SpuSaleAttrValue;
 import com.atguigu.gmall.product.service.SpuImageService;
 import com.atguigu.gmall.product.service.SpuSaleAttrService;
 import com.atguigu.gmall.product.service.SpuSaleAttrValueService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.gmall.product.domain.SpuInfo;
+
 import com.atguigu.gmall.product.service.SpuInfoService;
 import com.atguigu.gmall.product.mapper.SpuInfoMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

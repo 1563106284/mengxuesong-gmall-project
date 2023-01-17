@@ -1,13 +1,11 @@
 package com.atguigu.gmall.product.service.impl;
 
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.gmall.product.domain.BaseTrademark;
-import com.atguigu.gmall.product.service.BaseTrademarkService;
+import com.atguigu.gmall.model.product.BaseTrademark;
 import com.atguigu.gmall.product.mapper.BaseTrademarkMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.atguigu.gmall.product.service.BaseTrademarkService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
 * @author mengxueshong
@@ -16,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 */
 @Service
 public class BaseTrademarkServiceImpl extends ServiceImpl<BaseTrademarkMapper, BaseTrademark>
-    implements BaseTrademarkService{
+    implements BaseTrademarkService {
 
   
 

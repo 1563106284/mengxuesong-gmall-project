@@ -1,8 +1,8 @@
 package com.atguigu.gmall.product.service;
 
-import com.atguigu.gmall.product.domain.BaseTrademark;
+
+import com.atguigu.gmall.model.product.BaseTrademark;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
 * @author mengxueshong

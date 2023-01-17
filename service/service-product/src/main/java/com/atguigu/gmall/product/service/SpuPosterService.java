@@ -1,6 +1,7 @@
 package com.atguigu.gmall.product.service;
 
-import com.atguigu.gmall.product.domain.SpuPoster;
+
+import com.atguigu.gmall.model.product.SpuPoster;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

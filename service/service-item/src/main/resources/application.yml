@@ -1,0 +1,28 @@
+server:
+  port: 9000
+#线程的相关魔法值抽取a
+thread-pool:
+  properties:
+    maximumPoolSize: 8
+    corePoolSize: 4
+    keepAliveTime: 300
+    queueSize: 2000
+
+#   监控微服务的actuator：作用查看当前微服务的情况
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# 组件的相关配置
+spring:
+  # redis
+  redis:
+    host: 192.168.200.100
+    password: Lfy123456
+  # zipkin 链路追踪：
+  zipkin:
+    base-url: http://192.168.200.100:9411/
+    sender:
+      type: web

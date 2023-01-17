@@ -1,9 +1,10 @@
 package com.atguigu.gmall.product.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.gmall.product.domain.SpuImage;
+
+import com.atguigu.gmall.model.product.SpuImage;
 import com.atguigu.gmall.product.service.SpuImageService;
 import com.atguigu.gmall.product.mapper.SpuImageMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
