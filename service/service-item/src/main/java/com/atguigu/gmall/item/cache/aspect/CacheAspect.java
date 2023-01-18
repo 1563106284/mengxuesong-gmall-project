@@ -5,19 +5,26 @@ import com.atguigu.gmall.item.cache.CacheOpsService;
 import com.atguigu.gmall.item.cache.annotation.GmallCache;
 import com.atguigu.gmall.product.to.SkuDetailInfoTo;
 import com.sun.corba.se.spi.ior.iiop.IIOPFactories;
+import javafx.scene.layout.ConstraintsBase;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.Expression;
+import org.springframework.expression.common.TemplateParserContext;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
 
 import javax.xml.transform.Result;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.SQLClientInfoException;
 
 /**
  * 功能描述：
@@ -46,17 +53,53 @@ public class CacheAspect {
     @Autowired
     CacheOpsService cacheOpsService;
 
+    // 1:拿到spel解析器
+    SpelExpressionParser spelExpressionParser = new SpelExpressionParser();
+    // 2:模板上下文：
+    TemplateParserContext parserContext = new TemplateParserContext();
+
+    @Test
+    public void heelTest(){
+        Hello hello = new Hello();
+        Class<? extends Hello> aClass = hello.getClass();
+        Method[] methods = aClass.getMethods();
+        for (Method method : methods) {
+            System.out.println(method);
+        }
+    }
     /**
-     *  4:动态的获取cacheKey
+     * 4:动态的获取cacheKey
+     *
      * @param joinPoint
      * @return
      */
     private String determineCacheKey(ProceedingJoinPoint joinPoint) {
-      MethodSignature method  = (MethodSignature) joinPoint.getSignature();
+        // 1:转换拿到method signature
+        MethodSignature method = (MethodSignature) joinPoint.getSignature();
+        // 2:拿到切面的方法
         Method currentMethod = method.getMethod();
-        String cacheKey = currentMethod.getDeclaredAnnotation(GmallCache.class).cacheKey();
+        // 3:通过方法 .declaredAnnotation:拿到方法的注解
+        String cacheAnnotation = currentMethod.getDeclaredAnnotation(GmallCache.class).cacheKey();
+
+        // 4:创建方法拿到注解后面的值：
+        String cacheKey=evaluationExpression(cacheAnnotation,joinPoint,String.class);
+
+
         return cacheKey;
     }
+
+    private<T> T  evaluationExpression(String cacheAnnotation, ProceedingJoinPoint joinPoint, Class<T> clz) {
+
+        // spel解析器：
+        Expression expression = spelExpressionParser.parseExpression(cacheAnnotation, parserContext);
+        // 4:sku:info:{#[0]}
+        StandardEvaluationContext context = new StandardEvaluationContext();
+        // 5:取出参数：绑定到上下文中
+        context.setVariable("params",joinPoint.getArgs());
+        T cacheKey = expression.getValue(context, clz);
+        return cacheKey;
+    }
+
     /**
      * v3:优化缓存：布隆过滤器 以及 分布式的形成注解
      *
@@ -68,7 +111,7 @@ public class CacheAspect {
 
         // 1:获取缓存key：v1:动态获取cacheKey
 //        String cacheKey = SystemRedisConstant.SKU_INFO + joinPoint.getArgs()[0];
-          String cacheKey=determineCacheKey(joinPoint);
+        String cacheKey = determineCacheKey(joinPoint);
 
         // 2:查询当前缓存是否数据：
         SkuDetailInfoTo skuData = cacheOpsService.getSkuData(cacheKey, SkuDetailInfoTo.class);
@@ -103,7 +146,6 @@ public class CacheAspect {
         }
         return skuData;
     }
-
 
 
     /**

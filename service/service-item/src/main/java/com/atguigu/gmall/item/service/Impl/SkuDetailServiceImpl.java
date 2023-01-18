@@ -48,7 +48,7 @@ public class SkuDetailServiceImpl implements SkuDetailService {
      * @param skuId
      * @return
      */
-    @GmallCache
+    @GmallCache(cacheKey = SystemRedisConstant.SKU_INFO+"#{#params[0]}")
     @Override
     public SkuDetailInfoTo getSkuDetail(Long skuId) {
         SkuDetailInfoTo info = getSkuDetailFromRPC(skuId);
